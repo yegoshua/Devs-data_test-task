@@ -38,13 +38,14 @@ export default class NotesView {
     }
 
     _createListItemHTML(id, title, body, updated) {
-        const MAX_BODY_LENGTH = 20;
+        const MAX_BODY_LENGTH = 200;
 
         return `
             <div class="notes__list-item" data-note-id="${id}">
                 <div class="notes__small-title">${title}</div>
                 <div class="notes__small-body">
-                ${body}
+                ${body.substring(0, MAX_BODY_LENGTH)}
+                ${body.length > MAX_BODY_LENGTH ? "..." : ""}
                 </div>
                 <div class="notes__small-updated">
                     ${updated.toLocaleString(undefined, { dateStyle: "full", timeStyle: "short" })}
